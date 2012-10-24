@@ -13,4 +13,14 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
+group :test, :development do
+  gem "rspec-rails",        ">= 2.0.1"
+end
+
+group :test do
+  gem "factory_girl_rails", ">=3.3.0"
+  gem "shoulda",          ">=3.0.1"
+  gem 'shoulda-matchers', "1.4.0"
+end
+
 gem 'jquery-rails'
