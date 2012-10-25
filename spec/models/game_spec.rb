@@ -19,6 +19,13 @@ describe Game, "callbacks" do
         @game = Game.create(run_date: Date.today)
       }.to change(SecretFriendship, :count).by(Person.count)
     end
+
+    it "should select a random friend for every given person. Everyone must have a secret friend" do
+      @people_ids = Person.all.map(&:id)
+      @game = Game.create(run_date: Date.today)
+
+      @game.secret_friendships.map(&:friend_id).should include(*@people_ids)
+    end
   end
 
 end

@@ -9,9 +9,13 @@ class Game < ActiveRecord::Base
 
   def create_secret_friendships
     people = Person.all
+    people_ids = people.map(&:id)
     people.each do |person|
+      friend_id = (people_ids - [ person.id ]).shuffle.first
+      people_ids.delete(friend_id)
+
       self.secret_friendships.build(person_id: person.id,
-                                    friend_id: rand(1000))
+                                    friend_id: friend_id)
     end
   end
 end
