@@ -1,3 +1,22 @@
-%form
-  %input(type="text" name="name")
-  %input(type="text" name="email")
+%h1 New Person
+
+= form_for @person do |f|
+  %ul
+    - @person.errors.full_messages.each do |error|
+      %li= error
+  %ul
+    %li
+      = f.label :full_name
+      = f.text_field :full_name
+
+    %li
+      = f.label :email
+      = f.text_field :email
+
+  = f.submit
+
+%ul
+  - @people.each do |person|
+    %li(id="person_#{person.id}")
+      = name_with_email(person)
+      = link_to "Delete", person_path(person), remote: true, method: :delete, confirm: "Are you sure?"
