@@ -26,6 +26,7 @@ describe Game, "callbacks" do
 
       @game.secret_friendships.map(&:friend_id).should include(*@people_ids)
     end
+
   end
 
 end
