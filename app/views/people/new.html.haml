@@ -15,8 +15,13 @@
 
   = f.submit
 
-%ul
-  - @people.each do |person|
-    %li(id="person_#{person.id}")
-      = name_with_email(person)
-      = link_to "Delete", person_path(person), remote: true, method: :delete, confirm: "Are you sure?"
+%ul#people
+
+- content_for :javascripts do
+  = javascript_include_tag "jquery.chosen.min"
+  = javascript_include_tag "people/new"
+  :javascript
+    (function () {
+      Amigosalao.people = "#{escape_javascript(render "people/index")}";
+      $("#people").html(Amigosalao.people);
+    })();

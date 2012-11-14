@@ -1,0 +1,12 @@
+!!! 5
+%html
+  %head
+    %title Amigosalao
+    = stylesheet_link_tag    "application", :media => "all"
+    = csrf_meta_tags
+
+  %body
+    = render 'shared/flashes' if notice || alert
+    = yield
+
+    = render "shared/javascripts"
