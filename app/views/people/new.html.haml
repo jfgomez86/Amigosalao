@@ -15,13 +15,32 @@
 
   = f.submit
 
+%ul
+  - @person_1.each do |person|
+    %li= person.full_name
+
+%ul#people-2
+  = render "people/index"
+
 %ul#people
 
 - content_for :javascripts do
-  = javascript_include_tag "jquery.chosen.min"
   = javascript_include_tag "people/new"
   :javascript
     (function () {
       Amigosalao.people = "#{escape_javascript(render "people/index")}";
       $("#people").html(Amigosalao.people);
     })();
+
+  :erb
+    <ul>
+      <% @people.each do |person| %>
+        <li><%= person.full_name %></li>
+      <% end %>
+    </ul>
+
+  :markdown
+    Hola Mundo
+    ==========
+
+    * Esto es markdown

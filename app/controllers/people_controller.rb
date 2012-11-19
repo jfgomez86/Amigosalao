@@ -2,7 +2,9 @@ class PeopleController < ApplicationController
 
   def new
     @person = Person.new
+    @person_1 = Person.where(email: "an.email@koombea.com")
     @people = Person.all
+    logger.info "Did the query run?"
   end
 
   def create
